@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wang Yijia ❤️ Zhou Beibei</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background: linear-gradient(-45deg, #f2bfd3, #fde6f2, #f2bfd3);
+      background-size: 600% 600%;
+      animation: gradientBG 30s ease-in-out infinite;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(90deg, #fbd6e3, #fdeff9, #fbd6e3);
+      background-size: 300% 300%;
+      animation: gradientBG 20s ease infinite;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    header p {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .heart {
+      display: inline-block;
+      animation: pulse 1.2s infinite;
+      transform-origin: center;
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .slideshow {
+      text-align: center;
+      margin: 40px auto;
+    }
+
+    .slide-container {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 70vh;
+      height: auto;
+      width: auto;
+      margin: auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .caption {
+      background: rgba(255,255,255,0.9);
+      padding: 10px;
+      font-size: 1rem;
+      color: #d6336c;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .controls {
+      margin-top: 10px;
+    }
+
+    .controls button {
+      background: #fcbfdc;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 0 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background-color: rgba(255, 192, 203, 0.6); /* 半透明粉色 */
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5em;
+      color: white;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+
+  .slide-btn:hover {
+      background-color: rgba(255, 105, 180, 0.8); /* hover 更深一点 */
+    }
+
+  .slide-btn.left {
+      left: 10px;
+    }
+
+  .slide-btn.right {
+      right: 10px;
+    }
+
+
+    .controls button:hover {
+      background: #f89ec5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #anniversary {
+      text-align: center;
+      background-color: #fff0f5;
+      padding: 30px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(255, 192, 203, 0.4);
+    }
+
+    #typewriter {
+      overflow: hidden;
+      border-right: .15em solid #f88;
+      white-space: nowrap;
+      animation: typing 4s steps(40, end), blink .75s step-end infinite;
+      font-weight: bold;
+      font-size: 1.4em;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #f88 }
+    }
+
+    .countdown {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #d6336c;
+    }
+
+    #cursor-circle {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, rgba(255,192,203,0.4) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 9999;
+      mix-blend-mode: lighten;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ffb6c1;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      width: 45px;
+      height: 45px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" autoplay loop>
+    <source src="1.mp3" type="audio/mp3" />
+  </audio>
+  
+  <button id="music-toggle" title="切换音乐" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: #fff0f5;
+    color: #d6336c;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+  ">
+    🔈
+  </button>
+  
+
+  <header>
+    <h1>Wang Yijia <span class="heart" onclick="document.getElementById('iloveyou').play()">❤️</span> Zhou Beibei</h1>
+    <p>Our moments, our memories, our love.</p>
+  </header>
+
+  <section class="slideshow">
+    <div class="slide-container">
+      <div class="slide active">
+        <img src="1.jpg" alt="在咖啡店合照" />
+        <div class="caption">☕ 在咖啡店合照</div>
+      </div>
+      <div class="slide">
+        <img src="2.jpg" alt="在日料店~" />
+        <div class="caption">在日料店~</div>
+      </div>
+      <div class="slide">
+        <img src="3.jpg" alt="第一次见面吃饭" />
+        <div class="caption">第一次见面吃饭</div>
+      </div>
+      <div class="slide">
+        <img src="4.jpg" alt="宝宝和爱宝一起合照" />
+        <div class="caption">宝宝和爱宝一起合照</div>
+      </div>
+      <div class="slide">
+        <img src="5.JPG" alt="随手一拍" />
+        <div class="caption">随手一拍</div>
+      </div>
+      <div class="slide">
+        <img src="6.JPG" alt="给宝宝打伞⛱️,我是个好管家" />
+        <div class="caption">给宝宝打伞⛱️,我是个好管家</div>
+      </div>
+      <div class="slide">
+        <img src="7.JPG" alt="一起喂锦鲤🐟" />
+        <div class="caption">一起喂锦鲤🐟</div>
+      </div>
+      <div class="slide">
+        <img src="8.JPG" alt="和宝宝的照片~" />
+        <div class="caption">和宝宝的照片~</div>
+      </div>
+      <div class="slide">
+        <img src="9.JPG" alt="一起手牵手" />
+        <div class="caption">🤝 一起手牵手</div>
+      </div>
+      <div class="slide">
+        <img src="10.JPG" alt="来长沙照顾你啦" />
+        <div class="caption">来长沙照顾你啦</div>
+      </div>
+      <div class="slide">
+        <img src="11.JPG" alt="我俩默契的送花,还有宝宝给我写的信💌~" />
+        <div class="caption">我俩默契的送花,还有宝宝给我写的信💌~</div>
+      </div>
+      <div class="slide">
+        <img src="12.JPG" alt="看我的超绝侧脸" />
+        <div class="caption">看我的超绝侧脸</div>
+      </div>
+      <div class="slide">
+        <img src="13.JPG" alt="随手拍宝宝真可爱" />
+        <div class="caption">随手拍宝宝真可爱</div>
+      </div>
+      <div class="slide">
+        <img src="14.JPG" alt="一起拍大头贴" />
+        <div class="caption">一起拍大头贴</div>
+      </div>
+      <div class="slide">
+        <img src="15.JPG" alt="去狗咖啦,好多狗狗🐶" />
+        <div class="caption">去狗咖啦,好多狗狗🐶</div>
+      </div>
+      <div class="slide">
+        <img src="16.JPG" alt="在拍立得店,全是娃娃🧸~" />
+        <div class="caption">在拍立得店,全是娃娃🧸~</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="slide-btn left" onclick="prevSlide()">‹</button>
+      <button class="slide-btn right" onclick="nextSlide()">›</button>
+    </div>
+  </section>
+
+  <section id="anniversary">
+    <h2>📅 Our Anniversary</h2>
+    <p>We’ve been together since <strong>March 20, 2025</strong>.</p>
+    <p id="typewriter">We’ve been together for <span id="daysTogether">...</span> days 💕</p>
+    <div class="countdown">🎉 Next anniversary in: <span id="countdownDays">...</span> days!</div>
+    <button onclick="popLove()">✨ 点我一下试试看</button>
+  </section>
+
+  <section id="video-section" style="text-align: center; margin: 40px auto;">
+    <h2>🎬 Our Video Memory</h2>
+    <video
+      id="loveVideo"
+      controls
+      playsinline
+      preload="metadata"
+      style="
+        width: 100%;
+        max-width: 700px;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <source src="123.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+  
+  <section>
+    <h2>💬 Love Note of the Day</h2>
+    <p id="dailyQuote">💬 Loading love note...</p>
+  </section>
+
+  <section>
+    <h2>💌 Letter to Beibei</h2>
+    <button onclick="document.getElementById('msg').style.display='block'">💌 From Yijia</button>
+    <div id="msg" style="display:none; margin-top: 10px;">
+      <p>亲爱的贝贝，我写这个网站，是想让你知道：有你在的每一天，都是纪念日,我的每一天,都离不开你。</p>
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ by Yijia for Beibei | © 2025
+  </footer>
+
+  <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+
+  <script>
+    // 鼠标光圈
+    const circle = document.getElementById('cursor-circle');
+    document.addEventListener('mousemove', e => {
+      circle.style.left = `${e.pageX - 15}px`;
+      circle.style.top = `${e.pageY - 15}px`;
+    });
+
+    // 自动播放轮播
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
+      });
+    }
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+    setInterval(nextSlide, 5000);
+
+    // 纪念日
+    const anniversaryDate = new Date("2025-03-20T00:00:00");
+    const today = new Date();
+    const daysTogether = Math.floor((today - anniversaryDate) / (1000 * 60 * 60 * 24));
+    document.getElementById("daysTogether").textContent = daysTogether;
+    const nextAnniversaryYear = today.getMonth() > 2 || (today.getMonth() === 2 && today.getDate() > 20) ? today.getFullYear() + 1 : today.getFullYear();
+    const nextAnniversary = new Date(`${nextAnniversaryYear}-03-20T00:00:00`);
+    const countdown = Math.ceil((nextAnniversary - today) / (1000 * 60 * 60 * 24));
+    document.getElementById("countdownDays").textContent = countdown;
+
+    // 每日一句情话
+    const quotes = [
+      "你是我藏在诗里的月光，梦里的糖。",
+      "愿我们如星辰般，在彼此的世界闪耀不息。",
+      "与你相遇，是我所有故事最动人的序章。",
+      "我想和你走很长的路，陪你度过每一个平凡又珍贵的日子。",
+      "好幸运,我们遇见了",
+      "有一个可以想念的人,就是幸福",
+      "我们绕了这么一圈才遇到,我比谁都明白你的重要",
+      "人生有两次幸运就好,一次是遇到你,一次是走到底"
+    ];
+    const quote = quotes[new Date().getDate() % quotes.length];
+    document.getElementById("dailyQuote").innerText = '💬 ' + quote;
+
+    // 背景音乐按钮控制
+    const musicBtn = document.getElementById('music-toggle');
+    const bgMusic = document.getElementById('bg-music');
+
+    musicBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.textContent = '🔈';
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = '🔇';
+      }
+    });
+
+    // 播放视频时自动暂停音乐
+     const video = document.getElementById('loveVideo');
+    video.addEventListener('play', () => {
+      bgMusic.pause();
+      musicBtn.textContent = '🔇';
+    });
+    video.addEventListener('pause', () => {
+      bgMusic.play();
+      musicBtn.textContent = '🔈';
+    });
+ 
+
+    // 漂浮情话泡泡
+    setInterval(() => {
+    const phrases = ["我好想你", "今天也要开心", "好美的宝宝", "你是我的唯一", "抱抱～","好爱你呀~","宝宝真美","好爱宝宝","心里全是宝宝","每天都好想你","希望你每天都无忧无虑"];
+    const msg = document.createElement('div');
+    msg.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+    msg.style.position = 'fixed';
+    msg.style.left = Math.random() * 90 + 'vw';
+    msg.style.top = '100vh';
+    msg.style.padding = '8px 16px';
+    msg.style.background = 'rgba(255, 255, 255, 0.85)';
+    msg.style.borderRadius = '20px';
+    msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+    msg.style.color = '#d6336c';
+    msg.style.fontSize = '1rem';
+    msg.style.opacity = 0.9;
+    msg.style.transition = 'transform 3s linear, opacity 3s ease-out';
+    msg.style.zIndex = 999;
+    document.body.appendChild(msg);
+    setTimeout(() => {
+      msg.style.transform = `translateY(-120vh)`;
+      msg.style.opacity = 0;
+    }, 100);
+    setTimeout(() => msg.remove(), 3500);
+  }, 800);
+
+    // 爆心动画
+    function popLove() {
+      const heart = document.createElement('div');
+      heart.innerText = '❤️';
+      heart.style.position = 'fixed';
+      heart.style.top = Math.random() * 80 + '%';
+      heart.style.left = Math.random() * 80 + '%';
+      heart.style.fontSize = '2rem';
+      heart.style.opacity = 1;
+      heart.style.transition = 'opacity 2s ease-out';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.style.opacity = 0, 0);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    // 回到顶部按钮
+    window.addEventListener('scroll', () => {
+      document.getElementById("topBtn").style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+
+    // 视频播放时暂停背景音乐
+    video.addEventListener('play', () => {
+      bgMusic.pause();
+    });
+    video.addEventListener('pause', () => {
+      bgMusic.play();
+    });
+  </script>
+</body>
+</html>
