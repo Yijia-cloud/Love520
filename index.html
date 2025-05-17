@@ -432,6 +432,23 @@
     // 背景音乐按钮控制
     const musicBtn = document.getElementById('music-toggle');
     const bgMusic = document.getElementById('bg-music');
+    // 自动播放音乐（兼容浏览器限制）
+    function tryPlayMusic() {
+      bgMusic.play().then(() => {
+        musicBtn.textContent = '🔈';
+        console.log('🎵 自动播放成功');
+      }).catch(() => {
+        console.warn('🔇 自动播放被拦截，等待用户点击');
+      });
+    }
+
+tryPlayMusic(); // 进入页面自动尝试播放一次
+
+// 如果失败，用户首次点击页面时再播放
+document.addEventListener('click', () => {
+  tryPlayMusic();
+}, { once: true });
+
 
     musicBtn.addEventListener('click', () => {
       if (bgMusic.paused) {
