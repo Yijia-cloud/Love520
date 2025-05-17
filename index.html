@@ -15,13 +15,11 @@
       animation: gradientBG 30s ease-in-out infinite;
       scroll-behavior: smooth;
     }
-
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     header {
       position: sticky;
       top: 0;
@@ -33,7 +31,6 @@
       animation: gradientBG 20s ease infinite;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
-
     header h1 {
       margin: 0;
       font-size: 2.5em;
@@ -43,30 +40,25 @@
       gap: 10px;
       flex-wrap: wrap;
     }
-
     header p {
       text-align: center;
       margin-top: 10px;
     }
-
     .heart {
       display: inline-block;
       animation: pulse 1.2s infinite;
       transform-origin: center;
       cursor: pointer;
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.2); }
       100% { transform: scale(1); }
     }
-
     .slideshow {
       text-align: center;
       margin: 40px auto;
     }
-
     .slide-container {
       position: relative;
       width: 90%;
@@ -76,16 +68,13 @@
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
     }
-
     .slide {
       display: none;
       animation: fadeIn 1s ease;
     }
-
     .slide.active {
       display: block;
     }
-
     .slide img {
       max-width: 100%;
       max-height: 70vh;
@@ -96,7 +85,6 @@
       border-radius: 12px;
       object-fit: contain;
     }
-
     .caption {
       background: rgba(255,255,255,0.9);
       padding: 10px;
@@ -149,17 +137,13 @@
   .slide-btn.right {
       right: 10px;
     }
-
-
     .controls button:hover {
       background: #f89ec5;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
     #anniversary {
       text-align: center;
       background-color: #fff0f5;
@@ -167,7 +151,6 @@
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(255, 192, 203, 0.4);
     }
-
     #typewriter {
       overflow: hidden;
       border-right: .15em solid #f88;
@@ -176,23 +159,19 @@
       font-weight: bold;
       font-size: 1.4em;
     }
-
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
-
     @keyframes blink {
       from, to { border-color: transparent }
       50% { border-color: #f88 }
     }
-
     .countdown {
       margin-top: 20px;
       font-weight: bold;
       color: #d6336c;
     }
-
     #cursor-circle {
       position: fixed;
       width: 30px;
@@ -203,7 +182,6 @@
       z-index: 9999;
       mix-blend-mode: lighten;
     }
-
     #topBtn {
       position: fixed;
       bottom: 30px;
@@ -221,19 +199,30 @@
       cursor: pointer;
       z-index: 999;
     }
-
     footer {
       text-align: center;
       padding: 20px;
       color: #333;
     }
+    .heart {
+  animation: floatUp 2.0s ease-out forwards;
+}
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8) translateY(-150px);
+  }
+}
   </style>
 </head>
 <body>
   <audio id="bg-music" autoplay loop>
     <source src="1.mp3" type="audio/mp3" />
   </audio>
-  
   <button id="music-toggle" title="切换音乐" style="
     position: fixed;
     top: 20px;
@@ -251,8 +240,6 @@
   ">
     🔈
   </button>
-  
-
   <header>
     <h1>Wang Yijia <span class="heart" onclick="document.getElementById('iloveyou').play()">❤️</span> Zhou Beibei</h1>
     <p>Our moments, our memories, our love.</p>
@@ -330,7 +317,6 @@
       <button class="slide-btn right" onclick="nextSlide()">›</button>
     </div>
   </section>
-
   <section id="anniversary">
     <h2>📅 Our Anniversary</h2>
     <p>We’ve been together since <strong>March 20, 2025</strong>.</p>
@@ -338,7 +324,6 @@
     <div class="countdown">🎉 Next anniversary in: <span id="countdownDays">...</span> days!</div>
     <button onclick="popLove()">✨ 点我一下试试看</button>
   </section>
-
   <section id="video-section" style="text-align: center; margin: 40px auto;">
     <h2>🎬 Our Video Memory</h2>
     <video
@@ -358,12 +343,10 @@
       Your browser does not support the video tag.
     </video>
   </section>
-  
   <section>
     <h2>💬 Love Note of the Day</h2>
     <p id="dailyQuote">💬 Loading love note...</p>
   </section>
-
   <section>
     <h2>💌 Letter to Beibei</h2>
     <button onclick="document.getElementById('msg').style.display='block'">💌 From Yijia</button>
@@ -371,13 +354,10 @@
       <p>亲爱的贝贝，我写这个网站，是想让你知道：有你在的每一天，都是纪念日,我的每一天,都离不开你。</p>
     </div>
   </section>
-
   <footer>
     Made with ❤️ by Yijia for Beibei | © 2025
   </footer>
-
   <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
-
   <script>
     // 鼠标光圈
     const circle = document.getElementById('cursor-circle');
@@ -385,7 +365,6 @@
       circle.style.left = `${e.pageX - 15}px`;
       circle.style.top = `${e.pageY - 15}px`;
     });
-
     // 自动播放轮播
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -404,7 +383,6 @@
       showSlide(currentSlide);
     }
     setInterval(nextSlide, 5000);
-
     // 纪念日
     const anniversaryDate = new Date("2025-03-20T00:00:00");
     const today = new Date();
@@ -414,7 +392,6 @@
     const nextAnniversary = new Date(`${nextAnniversaryYear}-03-20T00:00:00`);
     const countdown = Math.ceil((nextAnniversary - today) / (1000 * 60 * 60 * 24));
     document.getElementById("countdownDays").textContent = countdown;
-
     // 每日一句情话
     const quotes = [
       "你是我藏在诗里的月光，梦里的糖。",
@@ -441,15 +418,11 @@
         console.warn('🔇 自动播放被拦截，等待用户点击');
       });
     }
-
 tryPlayMusic(); // 进入页面自动尝试播放一次
-
 // 如果失败，用户首次点击页面时再播放
 document.addEventListener('click', () => {
   tryPlayMusic();
 }, { once: true });
-
-
     musicBtn.addEventListener('click', () => {
       if (bgMusic.paused) {
         bgMusic.play();
@@ -459,7 +432,6 @@ document.addEventListener('click', () => {
         musicBtn.textContent = '🔇';
       }
     });
-
     // 播放视频时自动暂停音乐
      const video = document.getElementById('loveVideo');
     video.addEventListener('play', () => {
@@ -470,8 +442,6 @@ document.addEventListener('click', () => {
       bgMusic.play();
       musicBtn.textContent = '🔈';
     });
- 
-
     // 漂浮情话泡泡
     setInterval(() => {
     const phrases = ["我好想你", "今天也要开心", "好美的宝宝", "你是我的唯一", "抱抱～","好爱你呀~","宝宝真美","好爱宝宝","心里全是宝宝","每天都好想你","希望你每天都无忧无虑"];
@@ -496,27 +466,48 @@ document.addEventListener('click', () => {
     }, 100);
     setTimeout(() => msg.remove(), 3500);
   }, 800);
-
     // 爆心动画
     function popLove() {
+  let round = 0;
+  function spawnHearts() {
+    for (let i = 0; i < 52; i++) {
       const heart = document.createElement('div');
+      heart.className = 'heart';
       heart.innerText = '❤️';
+      // 随机位置
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      // 随机大小
+      const size = 12 + Math.random() * 20;
+      heart.style.fontSize = `${size}px`;
+      // 随机颜色
+      const colors = ['#ff5c8a', '#ff6699', '#ff99cc', '#e91e63', '#ff3366'];
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
       heart.style.position = 'fixed';
-      heart.style.top = Math.random() * 80 + '%';
-      heart.style.left = Math.random() * 80 + '%';
-      heart.style.fontSize = '2rem';
-      heart.style.opacity = 1;
-      heart.style.transition = 'opacity 2s ease-out';
+      heart.style.zIndex = 9999;
+      heart.style.pointerEvents = 'none';
+      heart.style.animation = 'floatUp 1.8s ease-out forwards';
       document.body.appendChild(heart);
-      setTimeout(() => heart.style.opacity = 0, 0);
-      setTimeout(() => heart.remove(), 2000);
+      setTimeout(() => heart.remove(), 1800);
     }
-
-    // 回到顶部按钮
+  }
+  
+  // 执行三轮爆炸，每轮间隔2秒
+  function loopBurst() {
+    if (round < 3) {
+      spawnHearts();
+      round++;
+      setTimeout(loopBurst, 500); // 下一轮延迟2秒
+    }
+  }
+  loopBurst(); // 启动第一轮
+}
+   
+// 回到顶部按钮
     window.addEventListener('scroll', () => {
       document.getElementById("topBtn").style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
-
+    
     // 视频播放时暂停背景音乐
     video.addEventListener('play', () => {
       bgMusic.pause();
